@@ -1,13 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import * as PropTypes from 'prop-types';
-import { Typography } from '@mui/material';
+import { Grid, Typography, useMediaQuery } from '@mui/material';
 import weatherAPIRequest from '../../../api/weatherAPIRequest';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+
+const StyledDiv = styled.div`
+    background-color: aqua;
+    min-height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+`;
 
 function WeatherBlock({ location }) {
     const [weatherData, setWeatherData] = useState({ });
-
+    const navigate = useNavigate();
     const { name } = location;
     const units = 'metric';
+
+    const handleClickOnCity = useCallback(() => {
+        navigate(`/details/${name}`, {state: location});
+    }, [name, location]);
+
 
     useEffect(() => {
         weatherAPIRequest(location, units).then( (result) =>
@@ -16,12 +31,12 @@ function WeatherBlock({ location }) {
     }, [location]);
 
     return (
-        <div>
+        <StyledDiv onClick={handleClickOnCity}>
             <Typography variant="h3">{name}</Typography>
             <Typography>
                 {weatherData?.main?.temp}
             </Typography>
-        </div>
+        </StyledDiv>
     )
 }
 

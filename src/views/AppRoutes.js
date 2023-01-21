@@ -8,7 +8,7 @@ function AppRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Dashboard />}/>
-            <Route path="/:city" element={<Details />}/>
+            <Route path="/details/:city" element={<Details />}/>
         </Routes>
     )
 }
