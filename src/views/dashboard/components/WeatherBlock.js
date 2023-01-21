@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Grid, Typography, useMediaQuery } from '@mui/material';
-import weatherAPIRequest from '../../../api/weatherAPIRequest';
+import { getWeatherData } from '../../../api/weatherAPIRequest';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
@@ -25,7 +25,7 @@ function WeatherBlock({ location }) {
 
 
     useEffect(() => {
-        weatherAPIRequest(location, units).then( (result) =>
+        getWeatherData(location, units).then((result) =>
             setWeatherData(result)
         );
     }, [location]);
