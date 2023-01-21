@@ -1,12 +1,11 @@
-import { API_KEY } from './config';
+import AppRoutes from './views/AppRoutes';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      <span>
-      {API_KEY}
-      </span>
-    </div>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
   );
 }
 
