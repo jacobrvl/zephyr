@@ -15,11 +15,9 @@ function Details() {
 
 
     return (
-
         <IconButton color="primary" component="label" onClick={handleBackClick}>
             <ArrowBackIosNewIcon/>
         </IconButton>
-
     );
 }
 

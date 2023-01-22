@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Zephyr
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A weather application as a proof of concept for the interview at BCGx
 
-## Available Scripts
+## Live demo
+To be able to get a quick understanding on how the app works I created a live demo.
+The demo can be found here: https://bcgxzephyr.herokuapp.com/
 
-In the project directory, you can run:
+## How to set it up and run locally
+1. Running ```yarn install``` to install all the dependencies.
+2. Running ```yarn start``` to start up the development server on your local machine.
 
-### `npm start`
+## Approach
+The approach of the project started of with defining the minimal requirements, this was already given in the assignment document. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+As it needed to be both accessed by mobile and via browser Javascript and React where the most logical option as I already had experience in both.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The next step was researching which external libraries where there that could help me in the development process. 
+For example the ```react-geolocated``` package made sure I could get the location of the user easily. To get a base for the interface I used the ```@mui/material``` package. 
+Another part was setting an account at OpenWeatherMap API and seeing how the endpoints worked. 
 
-### `npm test`
+When started I used the boiler of the ```create-react-app``` and changed the structure to my preferences.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The first thing was adding the ```.env``` file to store the API key in and making sure this is not added to git. 
+For completeness, I add ```.env``` to the submission.
 
-### `npm run build`
+I continued with setting the routes and building the needed components. 
+As I had wireframes I had already an idea to split up the components. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Improvements
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Use TypeScript instead of JavaScript. 
+- Set up a CI/CD pipeline to automatically publish on heroku
+- Spend more time on the UI/UX 
+- Implement ```I18next``` for translations in different languages 
+- Create a way to switch between Fahrenheit and Celsius
+- Animation of the current weather in the ```WeatherBlock```
+- Setting up a redux store
+- Use localstorage to save settings and locations
+- Increase test coverage and mix of tests
+- 
