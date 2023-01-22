@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 const StyledDiv = styled.div`
-    background-color: aqua;
+    border: 2px solid black;
     min-height: 135px;
     border-radius: 10px;
     padding: 10px;
@@ -27,18 +27,16 @@ const StyledWarningAmberIcon = styled(WarningAmberIcon)`
     width: 72px;
 `;
 
-function WeatherBlock({ location }) {
+function WeatherBlock({ location, units }) {
     const [weatherData, setWeatherData] = useState({ });
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const { name } = location;
-    const units = 'metric';
 
     const handleClickOnCity = useCallback(() => {
-        navigate(`/details/${name}`, {state: location});
+        navigate(`/details/${name}`, {state: {location: location, units: units}});
     }, [name, location]);
-
 
     useEffect(() => {
         setIsLoading(true);
@@ -58,23 +56,23 @@ function WeatherBlock({ location }) {
                     <Typography variant="h4">{name}</Typography>
                 </Grid>
                 <Grid item>
-                    {isLoading && <CircularProgress size={72}/>}
-                    {isError && <StyledWarningAmberIcon/> }
+                    {isLoading && <CircularProgress size={72} />}
+                    {isError && <StyledWarningAmberIcon />}
                     {
                         !isLoading && !isError &&
                         <Typography variant="h2">
-                            {Math.round(weatherData?.main?.temp)}°
+                            {weatherData?.main?.temp && Math.round(weatherData?.main?.temp)}°
                         </Typography>
                     }
                 </Grid>
             </StyledGridContainer>
-
         </StyledDiv>
     )
 }
 
 WeatherBlock.propTypes = {
-    location: PropTypes.shape({ lon: PropTypes.number, lat: PropTypes.number, name: PropTypes.string })
+    location: PropTypes.shape({ lon: PropTypes.number, lat: PropTypes.number, name: PropTypes.string }).isRequired,
+    units: PropTypes.string.isRequired
 };
 
 export default WeatherBlock;
