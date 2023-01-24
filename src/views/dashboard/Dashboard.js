@@ -54,7 +54,7 @@ function Dashboard() {
     return (
         <StyledContainer>
             <Grid container spacing={2} justifyContent="center">
-                {currentLocation.isGeolocationEnabled &&
+                {currentLocation.isGeolocationEnabled  &&
                     <Grid item xs={10} md={4}>
                         <WeatherBlock
                             location={

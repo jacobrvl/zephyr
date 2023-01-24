@@ -40,6 +40,7 @@ function WeatherBlock({ location, units }) {
 
     useEffect(() => {
         setIsLoading(true);
+        if (location.lat === undefined || location.lon === undefined) return;
 
         getWeatherData(location, units).then((result) => {
             setWeatherData(result);

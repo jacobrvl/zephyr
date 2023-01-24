@@ -8,7 +8,9 @@ function getLocationCoordinates(city) {
 }
 
 function getWeatherData(location, units) {
-    //TODO: check for input, if location is all good.
+    if (location?.lat === undefined || location?.lon === undefined) {
+        return Promise.reject("lat or lon not defined");
+    }
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${API_KEY}&units=${units}`
     return fetchRequest(url)
 }
