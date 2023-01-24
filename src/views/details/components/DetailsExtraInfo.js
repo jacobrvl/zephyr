@@ -28,7 +28,7 @@ function DetailsExtraInfo({ weatherData }) {
             </Grid>
             <Grid item xs={6}>
                 <StyledTypography align="center">Humidity</StyledTypography>
-                <Typography align="center">{weatherData.main?.humidity}</Typography>
+                <Typography align="center">{weatherData.main?.humidity}%</Typography>
             </Grid>
             <Grid item xs={6}>
                 <StyledTypography align="center">Visibility</StyledTypography>

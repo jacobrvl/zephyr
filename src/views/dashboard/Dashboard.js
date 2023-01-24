@@ -1,7 +1,7 @@
 import { Container, Fab, Grid } from '@mui/material';
 import WeatherBlock from './components/WeatherBlock';
 import { useGeolocated } from 'react-geolocated';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
 import { getLocationCoordinates } from '../../api/weatherAPIRequest';
@@ -45,6 +45,11 @@ function Dashboard() {
             })
         }
     }, []);
+
+    useEffect(() => {
+        console.log(currentLocation);
+    }, [currentLocation]);
+
 
     return (
         <StyledContainer>

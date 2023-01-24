@@ -1,14 +1,24 @@
 import '@testing-library/jest-dom';
 import ReactTestRenderer from 'react-test-renderer';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { createMemoryRouter, RouterProvider, useLocation } from 'react-router-dom';
 import Details from '../../../views/details/Details';
 import Dashboard from '../../../views/dashboard/Dashboard';
+
+
+jest.mock("react-router-dom");
 
 describe('Details', () => {
     let wrapper;
     beforeEach(() => {
 
-       const routes = [
+        useLocation.mockReturnValue({
+            state: {
+                location: {name: test, lon: 4.9041, lat: 52.3676},
+                units: 'metric',
+            }
+        })
+
+        const routes = [
            {
                path: "/",
                element: <Dashboard />,

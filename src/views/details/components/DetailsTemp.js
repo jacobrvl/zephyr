@@ -28,10 +28,10 @@ function DetailsTemp({ weatherData, units }) {
                 </Typography>
             </Grid>
             <Grid item xs={6}>
-                <Typography align="center">H: {Math.round(weatherData.main?.temp_max)}{unitSign}</Typography>
+                <Typography align="center">L: {Math.round(weatherData.main?.temp_min)}{unitSign}</Typography>
             </Grid>
             <Grid item xs={6}>
-                <Typography align="center">L: {Math.round(weatherData.main?.temp_min)}{unitSign}</Typography>
+                <Typography align="center">H: {Math.round(weatherData.main?.temp_max)}{unitSign}</Typography>
             </Grid>
         </StyledGrid>
     )
