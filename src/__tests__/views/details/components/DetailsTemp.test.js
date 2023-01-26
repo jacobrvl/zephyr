@@ -1,41 +1,13 @@
-import Dashboard from '../../../../views/dashboard/Dashboard';
-import Details from '../../../../views/details/Details';
-import { createMemoryRouter, RouterProvider, useLocation } from 'react-router-dom';
 import ReactTestRenderer from 'react-test-renderer';
 import DetailsTemp from '../../../../views/details/components/DetailsTemp';
 
-jest.mock("react-router-dom");
 
+jest.mock("react-router-dom");
 
 describe('DetailsTemp', () => {
     let testWeatherData;
-    let wrapper;
+
     beforeEach(() => {
-
-        useLocation.mockReturnValue({
-            state: {
-                location: {name: test, lon: 4.9041, lat: 52.3676},
-                units: 'metric',
-            }
-        })
-
-        const routes = [
-            {
-                path: "/",
-                element: <Dashboard />,
-            },
-            {
-                path: "/details/test",
-                element: <Details />,
-            },
-        ]
-
-        const router = createMemoryRouter(routes, {
-            initialEntries: ["/", "/details/test"],
-            initialIndex: 1,
-
-        });
-        wrapper = (object) => (<RouterProvider router={router}>{object}</RouterProvider>);
 
         testWeatherData = {
             "coord": {
@@ -88,7 +60,7 @@ describe('DetailsTemp', () => {
 
 
     test(' should render', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<DetailsTemp weatherData={testWeatherData} units="metric" />));
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
 
         expect(testRenderer).toBeTruthy();
         testRenderer.unmount();
@@ -96,10 +68,34 @@ describe('DetailsTemp', () => {
 
 
     test(' should render as previous snapshot', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<DetailsTemp weatherData={testWeatherData} units="metric" />));
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
 
         expect(testRenderer.toJSON()).toMatchSnapshot();
 
         testRenderer.unmount();
     });
+
+    test( ' should show the state from the weather data', () => {
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
+
+        expect(testRenderer.toJSON().children[0].children[0].children[0]).toBe("Drizzle");
+    })
+
+    test( ' should show the temp from the weather data', () => {
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
+
+        expect(testRenderer.toJSON().children[1].children[0].children[0]).toBe("2");
+    })
+
+    test( ' should show the low from the weather data', () => {
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
+
+        expect(testRenderer.toJSON().children[2].children[0].children[1]).toBe("1");
+    })
+
+    test( ' should show the high from the weather data', () => {
+        const testRenderer = ReactTestRenderer.create(<DetailsTemp weatherData={testWeatherData} units="metric" />);
+
+        expect(testRenderer.toJSON().children[3].children[0].children[1]).toBe("3");
+    })
 })

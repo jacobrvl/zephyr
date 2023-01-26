@@ -1,14 +1,13 @@
 import '@testing-library/jest-dom';
 import ReactTestRenderer from 'react-test-renderer';
-import { createMemoryRouter, RouterProvider, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Details from '../../../views/details/Details';
-import Dashboard from '../../../views/dashboard/Dashboard';
 
 
 jest.mock("react-router-dom");
 
 describe('Details', () => {
-    let wrapper;
+
     beforeEach(() => {
 
         useLocation.mockReturnValue({
@@ -18,22 +17,6 @@ describe('Details', () => {
             }
         })
 
-        const routes = [
-           {
-               path: "/",
-               element: <Dashboard />,
-           },
-           {
-               path: "/details/test",
-               element: <Details />,
-           },
-       ]
-
-        const router = createMemoryRouter(routes, {
-            initialEntries: ["/", "/details/test"],
-            initialIndex: 1,
-        });
-        wrapper = (object) => (<RouterProvider router={router}>{object}</RouterProvider>);
     })
 
     test(' should be defined', () => {
@@ -42,7 +25,7 @@ describe('Details', () => {
 
 
     test(' should render', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<Details />));
+        const testRenderer = ReactTestRenderer.create(<Details />);
 
         expect(testRenderer).toBeTruthy();
         testRenderer.unmount();
@@ -50,7 +33,7 @@ describe('Details', () => {
 
 
     test(' should render as previous snapshot', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<Details />));
+        const testRenderer = ReactTestRenderer.create(<Details />);
 
         expect(testRenderer.toJSON()).toMatchSnapshot();
 

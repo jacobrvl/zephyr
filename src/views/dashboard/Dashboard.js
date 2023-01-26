@@ -46,10 +46,6 @@ function Dashboard() {
         }
     }, []);
 
-    useEffect(() => {
-        console.log(currentLocation);
-    }, [currentLocation]);
-
 
     return (
         <StyledContainer>

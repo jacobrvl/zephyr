@@ -1,41 +1,14 @@
-import Dashboard from '../../../../views/dashboard/Dashboard';
-import Details from '../../../../views/details/Details';
-import { createMemoryRouter, RouterProvider, useLocation } from 'react-router-dom';
 import ReactTestRenderer from 'react-test-renderer';
 import DetailsExtraInfo from '../../../../views/details/components/DetailsExtraInfo';
 
-jest.mock("react-router-dom");
 
+jest.mock("react-router-dom");
 
 describe('DetailsExtraInfo', () => {
     let testWeatherData;
-    let wrapper;
+
     beforeEach(() => {
 
-        useLocation.mockReturnValue({
-            state: {
-                location: {name: test, lon: 4.9041, lat: 52.3676},
-                units: 'metric',
-            }
-        })
-
-        const routes = [
-            {
-                path: "/",
-                element: <Dashboard />,
-            },
-            {
-                path: "/details/test",
-                element: <Details />,
-            },
-        ]
-
-        const router = createMemoryRouter(routes, {
-            initialEntries: ["/", "/details/test"],
-            initialIndex: 1,
-
-        });
-        wrapper = (object) => (<RouterProvider router={router}>{object}</RouterProvider>);
 
         testWeatherData = {
             "coord": {
@@ -88,15 +61,15 @@ describe('DetailsExtraInfo', () => {
 
 
     test(' should render', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<DetailsExtraInfo weatherData={testWeatherData} />));
+        const testRenderer = ReactTestRenderer.create(<DetailsExtraInfo weatherData={testWeatherData} />);
 
         expect(testRenderer).toBeTruthy();
-        testRenderer.unmount();
+        testRenderer.unmount()
     });
 
 
     test(' should render as previous snapshot', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<DetailsExtraInfo weatherData={testWeatherData} />));
+        const testRenderer = ReactTestRenderer.create(<DetailsExtraInfo weatherData={testWeatherData} />);
 
         expect(testRenderer.toJSON()).toMatchSnapshot();
 

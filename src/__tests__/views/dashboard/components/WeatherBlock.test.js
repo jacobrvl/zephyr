@@ -4,10 +4,26 @@ import Details from '../../../../views/details/Details';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import ReactTestRenderer from 'react-test-renderer';
 import WeatherBlock from '../../../../views/dashboard/components/WeatherBlock';
+import { useGeolocated } from 'react-geolocated';
+
+
+jest.mock("react-geolocated");
 
 describe('WeatherBlock', () => {
     let wrapper;
+    let testLocation;
+    let testUnits;
+
     beforeEach(() => {
+        testLocation = {name: "test", lon: 10, lat: 10};
+        testUnits = "metric";
+
+        useGeolocated.mockReturnValue({
+            "coords":  {latitude: 52.3698486, longitude: 4.8939246},
+            "timestamp": 1674412975527,
+            "isGeolocationEnabled": true,
+            "isGeolocationAvailable": true
+        })
 
         const routes = [
             {
@@ -33,7 +49,7 @@ describe('WeatherBlock', () => {
 
 
     test(' should render', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<WeatherBlock />));
+        const testRenderer = ReactTestRenderer.create(wrapper(<WeatherBlock location={testLocation} units={testUnits} />));
 
         expect(testRenderer).toBeTruthy();
         testRenderer.unmount();
@@ -41,7 +57,7 @@ describe('WeatherBlock', () => {
 
 
     test(' should render as previous snapshot', () => {
-        const testRenderer = ReactTestRenderer.create(wrapper(<WeatherBlock />));
+        const testRenderer = ReactTestRenderer.create(wrapper(<WeatherBlock location={testLocation} units={testUnits} />));
 
         expect(testRenderer.toJSON()).toMatchSnapshot();
 

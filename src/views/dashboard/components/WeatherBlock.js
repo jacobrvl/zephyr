@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
+
 const StyledDiv = styled.div`
     border: 2px solid black;
     min-height: 135px;
