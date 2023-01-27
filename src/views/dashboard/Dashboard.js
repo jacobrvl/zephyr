@@ -25,14 +25,14 @@ function Dashboard() {
         { name: 'Berlin', lon: 13.4050, lat: 52.5200 },
         { name: 'London', lon: 0.1276, lat:51.5072 },
     ]);
-    const units = 'metric';
-
     const currentLocation = useGeolocated({
         positionOptions: {
             enableHighAccuracy: false,
         },
         userDecisionTimeout: 5000,
     });
+    const units = 'metric';
+
 
     const handleFabClick = useCallback(() => {
         const newLocationName = prompt("Enter a city name",'');
